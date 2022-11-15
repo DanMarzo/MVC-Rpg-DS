@@ -23,6 +23,13 @@ namespace RpgMvc.Controllers
             return View("CadastroPersonagem");
         }
 
+        [HttpGet]
+
+        public IActionResult IndexListarPersonagem()
+        {
+            return View("ListarPersonagem");
+        }
+
         [HttpPost]
         public async Task<IActionResult> RegistrarPersonagemAsync(PersonagemViewModel u)
         {
@@ -55,5 +62,19 @@ namespace RpgMvc.Controllers
             }
         }
 
+        public async Task<IActionResult> ListarPersonagensAsyn()
+        {
+            string uriComplementar = "GetAll";
+
+            HttpClient httpCliente = new HttpClient();
+
+            var response = await httpCliente.GetAsync(uriBase + uriComplementar);
+
+            var data = await response.Content.ReadAsStringAsync();
+
+            List<PersonagemViewModel> lista = (List<PersonagemViewModel>)JsonConvert.DeserializeObject(data);
+
+            return View(lista);
+        }
     }
 }
