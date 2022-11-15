@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RpgMvc.Controllers.Enums
+namespace RpgMvc.Models.Enums
 {
     public enum ClasseEnum
     {

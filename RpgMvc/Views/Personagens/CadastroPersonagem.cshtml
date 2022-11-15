@@ -1,27 +1,27 @@
-@model RpgMvc.Models.PersonagemViewModel
+@model RpgMvc.Models.PersonagemViewModel;
 
-@{ViewBag.Title = "Cadastro";}
-@if (@TempData["Mensagem"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        @TempData["Mensagem"]
-    </div>
-}
-@if (@TempData["MensagemErro"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @TempData["MensagemErro"]
-    </div>
-}
-<h2>Adicionar personagem Top!</h2>
-<hr>
-@* Vamos a segui chamar o metodo post *@
+    @{ViewBag.Title = "Cadastro";}
+    @if (@TempData["Mensagem"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Mensagem"]
+        </div>
+    }
+    @if (@TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["MensagemErro"]
+        </div>
+    }
+    <h2>Adicionar personagem Top!</h2>
+    <hr>
+    @* Vamos a segui chamar o metodo post *@
 
-@using (Html.BeginForm("RegistrarPersonagem", "Personagens", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        
+    @using (Html.BeginForm("RegistrarPersonagem", "Personagens", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+
             <div class="form-group col-md-12 ">
                 <div class="row">
                     @* Label Nome Personagem *@
@@ -29,16 +29,16 @@
                         Nome do Personagem:
                     </label>
                     @* <label class="control-label col-md-2">
-                        Classe do Personagem:
-                    </label> *@
+                            Classe do Personagem:
+                        </label> *@
                 </div>
-        
+
                 <div class="row">
                     @* Input Nome personagem *@
                     <div class="col-md-6">
-                        @Html.EditorFor(model => model.Nome, new {htmlAttributes = new { @class = "form-control"}})
+                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-        
+
                 </div>
                 <div class="row">
                     <label class="control-label col-md-2">
@@ -53,13 +53,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.PontosVida, new{htmlAttributes = new {@class="form-control", @type="number", @placeholder="Max = 100pts"}})
+                        @Html.EditorFor(model => model.PontosVida, new { htmlAttributes = new { @class = "form-control", @type = "number", @placeholder = "Max = 100pts" } })
                     </div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.Forca, new{htmlAttributes = new {@class="form-control", @type="number"}})
+                        @Html.EditorFor(model => model.Forca, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                     </div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.Defesa, new{htmlAttributes = new {@class="form-control", @type="number"}})
+                        @Html.EditorFor(model => model.Defesa, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                     </div>
                 </div>
                 <div class="row">
@@ -74,16 +74,16 @@
                 <div class="row">
                     @* Input Classe *@
                     <div class="col-md-2">
-                        <select class="form-control" asp-for="Classe" asp-items="Html.GetEnumSelectList<RpgMVC.Models.Enuns.ClasseEnum>()"></select>
+                        <select class="form-control" asp-for="Classe" asp-items="Html.GetEnumSelectList<RpgMvc.Models.Enums.ClasseEnum>()"></select>
                     </div>
                     @* Input ponto de Inteligencia*@
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.Inteligencia, new{ htmlAttributes = new {@class="form-control", @type="number"}})
+                        @Html.EditorFor(model => model.Inteligencia, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
                     </div>
                 </div>
-                  <br>
-                    <input type="submit" value="Registrar" class="btn btn-primary">
-                    @Html.ActionLink("Cancelar", "Index", "Home", null, new{ @class="btn btn-warning"})
+                <br>
+                <input type="submit" value="Registrar" class="btn btn-primary">
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-warning" })
             </div>
-    </div>
-}
+        </div>
+    }
