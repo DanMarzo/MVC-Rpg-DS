@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
 using RpgMvc.Models;
+using System.IO;
 
 namespace RpgMvc.Controllers
 {
@@ -62,19 +63,33 @@ namespace RpgMvc.Controllers
             }
         }
 
-        public async Task<IActionResult> ListarPersonagensAsyn()
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync()
         {
-            string uriComplementar = "GetAll";
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string uriComplementar = "GetAll";
 
-            HttpClient httpCliente = new HttpClient();
+                HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementar);
 
-            var response = await httpCliente.GetAsync(uriBase + uriComplementar);
+                string serialized = await response.Content.ReadAsStringAsync();
 
-            var data = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    return View("ListarPersonagem");
+                }
+                else
+                {
+                    throw new Exception(serialized);
+                }
 
-            List<PersonagemViewModel> lista = (List<PersonagemViewModel>)JsonConvert.DeserializeObject(data);
-
-            return View(lista);
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = ex.Message;
+                return View("ListarPersonagem");
+            }
         }
     }
 }
