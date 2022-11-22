@@ -1,4 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using RpgMvc.Models;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace RpgMvc.Controllers
@@ -14,6 +20,34 @@ namespace RpgMvc.Controllers
         {
             return View("CadastroUsuario");
         }
-        public async Task<IActionResult>
+        [HttpPost]
+        public async Task<IActionResult> RegistrarAsync(UsuarioViewModel u)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string uriComplementar = "Registrar";
+                var content = new StringContent(JsonConvert.SerializeObject(u));
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
+
+                string serialize = await response.Content.ReadAsStringAsync();
+                if(response.StatusCode == HttpStatusCode.OK)
+                {
+                    TempData["Mensgem"] = string.Format($"O usuário {u.Username} foi cadastrado com sucesso, faça login para acessar");
+                    return View("AutenticarUsuario");
+                }
+                else
+                {
+                    throw new Exception(serialize);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+
+        }
     }
 }
