@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-End\\RpgMvc\\RpgMvc\\RpgMvc.csproj": {}
+    "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-end\\RpgMvc\\RpgMvc\\RpgMvc.csproj": {}
   },
   "projects": {
-    "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-End\\RpgMvc\\RpgMvc\\RpgMvc.csproj": {
+    "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-end\\RpgMvc\\RpgMvc\\RpgMvc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-End\\RpgMvc\\RpgMvc\\RpgMvc.csproj",
+        "projectUniqueName": "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-end\\RpgMvc\\RpgMvc\\RpgMvc.csproj",
         "projectName": "RpgMvc",
-        "projectPath": "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-End\\RpgMvc\\RpgMvc\\RpgMvc.csproj",
+        "projectPath": "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-end\\RpgMvc\\RpgMvc\\RpgMvc.csproj",
         "packagesPath": "C:\\Users\\DanMarzoGil\\.nuget\\packages\\",
-        "outputPath": "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-End\\RpgMvc\\RpgMvc\\obj\\",
+        "outputPath": "D:\\ETEC\\etec2\\DS-I\\RPGapi\\Front-end\\RpgMvc\\RpgMvc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

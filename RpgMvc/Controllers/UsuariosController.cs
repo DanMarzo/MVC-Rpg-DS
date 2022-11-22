@@ -47,7 +47,11 @@ namespace RpgMvc.Controllers
                 TempData["MensagemErro"] = ex.Message;
                 return RedirectToAction("Index");
             }
-
+        }
+        [HttpGet]
+        public ActionResult IndexLogin()
+        {
+            return View("AutenticarUsuario");
         }
     }
 }

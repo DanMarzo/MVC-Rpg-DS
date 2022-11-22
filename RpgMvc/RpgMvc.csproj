@@ -4,4 +4,15 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\NovaPasta1\**" />
+    <Content Remove="Views\NovaPasta1\**" />
+    <EmbeddedResource Remove="Views\NovaPasta1\**" />
+    <None Remove="Views\NovaPasta1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
 </Project>
