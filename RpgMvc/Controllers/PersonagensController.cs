@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
 using RpgMvc.Models;
-using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace RpgMvc.Controllers
 {
@@ -28,7 +27,7 @@ namespace RpgMvc.Controllers
 
         public IActionResult IndexListarPersonagem()
         {
-            return View("ListarPersonagem");
+            return View("Index");
         }
 
         [HttpPost]
@@ -38,6 +37,9 @@ namespace RpgMvc.Controllers
             {
                 HttpClient httpClient = new HttpClient();
                 string uriComplementar = "PostAdd";
+                string token = HttpContext.Session.GetString("SessionTokenUsuario");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 var content = new StringContent(JsonConvert.SerializeObject(u));
 
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -48,7 +50,7 @@ namespace RpgMvc.Controllers
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     TempData["Mensagem"] = string.Format($"O personagem {u.Nome}, foi cadastrado com sucesso");
-                    return View("CadastroPersonagem");
+                    return RedirectToAction("Lista");
                 }
                 else
                 {
@@ -62,33 +64,33 @@ namespace RpgMvc.Controllers
                 return View("CadastroPersonagem");
             }
         }
-
+    
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> IndexAsync()
         {
             try
-            {
-                HttpClient httpClient = new HttpClient();
+            { 
                 string uriComplementar = "GetAll";
-
+                HttpClient httpClient = new HttpClient();
+                string token = HttpContext.Session.GetString("SessionTokenUsuario");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementar);
-
                 string serialized = await response.Content.ReadAsStringAsync();
-
-                if (response.StatusCode == HttpStatusCode.OK)
+            
+                if(response.StatusCode == HttpStatusCode.OK)
                 {
-                    return View("ListarPersonagem");
+                    List<PersonagemViewModel> listaPersonagem = await Task.Run(() => JsonConvert.DeserializeObject<List<PersonagemViewModel>>(serialized));
+                    return View(listaPersonagem);
                 }
                 else
                 {
                     throw new Exception(serialized);
                 }
 
-            }
-            catch (Exception ex)
+            }catch(Exception ex)
             {
                 TempData["MensagemErro"] = ex.Message;
-                return View("ListarPersonagem");
+                return RedirectToAction("Index");
             }
         }
     }

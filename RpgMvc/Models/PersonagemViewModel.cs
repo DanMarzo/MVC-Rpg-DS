@@ -9,20 +9,23 @@ namespace RpgMvc.Models
 {
     public class PersonagemViewModel
     {
-        [JsonProperty("id")]
+        //[JsonProperty("id")]
         public int        Id           { get; set; }
-        [JsonProperty("nome")]
+        //[JsonProperty("nome")]
         public string     Nome         { get; set; }
-        [JsonProperty("pontosVida")]
+        //[JsonProperty("pontosVida")]
         public int        PontosVida   { get; set; }
-        [JsonProperty("forca")]
+        //[JsonProperty("forca")]
         public int        Forca        { get; set; }
-        [JsonProperty("defesa")]
+        //[JsonProperty("defesa")]
         public int        Defesa       { get; set; }
-        [JsonProperty("inteligencia")]
+        //[JsonProperty("inteligencia")]
         public int        Inteligencia { get; set; }
-        [JsonProperty("classe")]
+        //[JsonProperty("classe")]
         public ClasseEnum Classe       { get; set; }
+        public int        Disputas     { get; set; }
+        public int        Vitorias     { get; set; }
+        public int        Derrotas     { get; set; }
 
         internal static object JsonDesserializar(string data)
         {
