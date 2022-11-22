@@ -42,3 +42,4 @@ D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\bin\Debug\net5.0\Newtonsoft.Js
 D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\obj\Debug\net5.0\Razor\Views\Usuarios\CadastroUsuario.cshtml.g.cs
 D:\ETEC\etec2\DS-I\RPGapi\Front-end\RpgMvc\RpgMvc\obj\Debug\net5.0\Razor\Views\Usuarios\AutenticarUsuario.cshtml.g.cs
 D:\ETEC\etec2\DS-I\RPGapi\Front-end\RpgMvc\RpgMvc\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartialRpg.cshtml.g.cs
+D:\ETEC\etec2\DS-I\RPGapi\Front-end\RpgMvc\RpgMvc\obj\Debug\net5.0\Razor\Views\Personagens\Index.cshtml.g.cs
