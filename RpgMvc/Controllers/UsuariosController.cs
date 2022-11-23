@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RpgMvc.Models;
 using System;
@@ -21,7 +22,7 @@ namespace RpgMvc.Controllers
             return View("CadastroUsuario");
         }
         [HttpPost]
-        public async Task<IActionResult> RegistrarAsync(UsuarioViewModel u)
+        public async Task<ActionResult> RegistrarAsync(UsuarioViewModel u)
         {
             try
             {
@@ -52,6 +53,35 @@ namespace RpgMvc.Controllers
         public ActionResult IndexLogin()
         {
             return View("AutenticarUsuario");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AutenticarAsync(UsuarioViewModel u)
+        {
+            try
+            {
+                HttpClient cliente = new HttpClient();
+                string uriComplementar = "Autenticar";
+
+                var content = new StringContent(JsonConvert.SerializeObject(u));
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage response = await cliente.PostAsync(uriBase + uriComplementar, content);
+                string serialized = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    HttpContext.Session.SetString("SessionTokenUsuario", serialized);
+                    TempData["Mensagem"] = string.Format($"Bem vindo {u.Username}");
+                    return RedirectToAction("Index", "Personagens");
+                }
+                else
+                    throw new Exception(serialized);
+            }
+            catch(Exception ex)
+            {
+                TempData["MensagemErro"] = ex.Message;
+                return IndexLogin();
+            }
         }
     }
 }
