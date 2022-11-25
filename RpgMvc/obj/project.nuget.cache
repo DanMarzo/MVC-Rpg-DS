@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "GltWifeLU39gHGVNZ9Y/9r4fOACBSrJHKNsxpcdz0opjR8NGO7VW92V5m4B6ZViEzDR6AYgN6rjAgDK0WdEnHg==",
+  "success": true,
+  "projectFilePath": "D:\\ETEC\\etec2\\DS-I\\RPGapi\\RpgMvc\\RpgMvc\\RpgMvc.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DanMarzoGil\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\DanMarzoGil\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\DanMarzoGil\\.nuget\\packages\\newtonsoft.json.schema\\3.0.14\\newtonsoft.json.schema.3.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
