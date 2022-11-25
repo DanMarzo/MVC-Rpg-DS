@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33027.164
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgMvc", "RpgMvc\RpgMvc.csproj", "{0C5EBE3F-4DED-4584-9D41-6036BD41B47E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgMvc", "RpgMvc\RpgMvc.csproj", "{F48BB949-2C16-43FB-9AAB-96C2F22842F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C5EBE3F-4DED-4584-9D41-6036BD41B47E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C5EBE3F-4DED-4584-9D41-6036BD41B47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C5EBE3F-4DED-4584-9D41-6036BD41B47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C5EBE3F-4DED-4584-9D41-6036BD41B47E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F48BB949-2C16-43FB-9AAB-96C2F22842F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F48BB949-2C16-43FB-9AAB-96C2F22842F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F48BB949-2C16-43FB-9AAB-96C2F22842F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F48BB949-2C16-43FB-9AAB-96C2F22842F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F8F68718-7FFE-4B45-825F-A215E1577100}
+		SolutionGuid = {617AC573-3E05-4E6E-930F-FF63D4090744}
 	EndGlobalSection
 EndGlobal
