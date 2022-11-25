@@ -2,6 +2,7 @@
 using System.Net.Http.Headers;
 using System.Net;
 using Newtonsoft.Json;
+using RpgMvc.Models;
 
 namespace RpgMvc.Controllers
 {
