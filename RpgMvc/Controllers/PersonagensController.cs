@@ -105,8 +105,6 @@ namespace RpgMvc.Controllers
             }
         }
 
-
-
         [HttpGet]
         public async Task<ActionResult> EditAsync(int? id)
         {
@@ -120,16 +118,16 @@ namespace RpgMvc.Controllers
 
                 string serialized = await response.Content.ReadAsStringAsync();
 
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
                     PersonagemViewModel p = await Task.Run(() =>
                     JsonConvert.DeserializeObject<PersonagemViewModel>(serialized));
                     return View(p);
                 }
                 else
-                    throw new System.Exception(serialized);
+                    throw new Exception(serialized);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 TempData["MensagemErro"] = ex.Message;
                 return RedirectToAction("Index");
