@@ -19,7 +19,7 @@
 <hr>
 @* Vamos a segui chamar o metodo post *@
 
-@using (Html.BeginForm("RegistrarPersonagem", "Personagens", FormMethod.Post))
+@using (Html.BeginForm("Create", "Personagens", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">

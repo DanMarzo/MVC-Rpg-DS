@@ -12,8 +12,6 @@ namespace RpgMvc.Controllers
         //public string uriBase = "http://DanMarzo.somee.com/RpgApi/Personagens/";
         //public string uriBase = "https://bsite.net/luizfernando987/Personagens/";
 
-
-
         [HttpGet]
         public async Task<ActionResult> IndexAsync()
         {
@@ -52,12 +50,13 @@ namespace RpgMvc.Controllers
             try
             {
                 HttpClient httpClient = new HttpClient();
+                string uriComplementar = "PostAdd";
                 string token = HttpContext.Session.GetString("SessionTokenUsuario");
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 var content = new StringContent(JsonConvert.SerializeObject(p));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = await httpClient.PostAsync(uriBase, content);
+                HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
                 string serialized = await response.Content.ReadAsStringAsync();
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
