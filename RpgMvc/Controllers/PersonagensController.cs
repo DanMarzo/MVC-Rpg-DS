@@ -56,6 +56,7 @@ namespace RpgMvc.Controllers
 
                 var content = new StringContent(JsonConvert.SerializeObject(p));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                //O content header é para para mudar o o titulo do Json para "application/json"
                 HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
                 string serialized = await response.Content.ReadAsStringAsync();
 
@@ -80,26 +81,31 @@ namespace RpgMvc.Controllers
             try
             {
                 HttpClient httpClient = new HttpClient();
+                
                 string token = HttpContext.Session.GetString("SessionTokenUsuario");
+                
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 HttpResponseMessage response = await httpClient.GetAsync(uriBase + id.ToString());
+
                 string serialized = await response.Content.ReadAsStringAsync();
 
-                if (response.StatusCode == HttpStatusCode.OK)
+                if(response.StatusCode == HttpStatusCode.OK)
                 {
-                    PersonagemViewModel p = await Task.Run(() =>
-                    JsonConvert.DeserializeObject<PersonagemViewModel>(serialized));
-                    return View(p);
+                    PersonagemViewModel ps = await Task.Run(() => JsonConvert.DeserializeObject<PersonagemViewModel>(serialized));
+                    return View(ps);
                 }
                 else
                     throw new Exception(serialized);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 TempData["MensagemErro"] = ex.Message;
                 return RedirectToAction("Index");
             }
         }
+
+
 
         [HttpGet]
         public async Task<ActionResult> EditAsync(int? id)
