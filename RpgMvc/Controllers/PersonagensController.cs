@@ -120,8 +120,7 @@ namespace RpgMvc.Controllers
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    PersonagemViewModel p = await Task.Run(() =>
-                    JsonConvert.DeserializeObject<PersonagemViewModel>(serialized));
+                    PersonagemViewModel p = await Task.Run(() => JsonConvert.DeserializeObject<PersonagemViewModel>(serialized));
                     return View(p);
                 }
                 else
