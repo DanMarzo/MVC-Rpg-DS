@@ -16,7 +16,7 @@
     </div>
 }
 <h2>Editar dados do personagens:</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post))
 {
     @Html.AntiForgeryToken();
 
