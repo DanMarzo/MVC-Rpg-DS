@@ -133,7 +133,7 @@ namespace RpgMvc.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<ActionResult> EditAsync(PersonagemViewModel p)
         {
             try
@@ -145,7 +145,7 @@ namespace RpgMvc.Controllers
                 var content = new StringContent(JsonConvert.SerializeObject(p));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage response = await httpClient.PutAsync(uriBase, content);
+                HttpResponseMessage response = await httpClient.PutAsync(uriBase + p.Id.ToString(), content);
                 string serialized = await response.Content.ReadAsStringAsync();
 
                 if (response.StatusCode == HttpStatusCode.OK)
