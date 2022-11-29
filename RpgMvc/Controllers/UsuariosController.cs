@@ -132,5 +132,26 @@ namespace RpgMvc.Controllers
             return RedirectToAction("IndexInformacoes");
 
         }
+        [HttpGet]
+        public async ActionResult AbrirAlteracaoSenha()
+        {
+            UsuarioViewModel viewModel = new UsuarioViewModel();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string login = HttpContext.Session.GetString("SessionUsername");
+                string uriComplementar = $"GetByLogin/{login}";
+                HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementar);
+                string serialized = await response.Content.ReadAsStringAsync();
+                if(response.StatusCode == HttpStatusCode.OK)
+                {
+                    UsuarioViewModel u = await Task.Run(() => JsonConvert.DeserializeObject<UsuarioViewModel>(serialized));
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
