@@ -71,7 +71,8 @@ namespace RpgMvc.Controllers
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     HttpContext.Session.SetString("SessionTokenUsuario", serialized);
-                    TempData["Mensagem"] = string.Format($"Bem vindo {u.Username}");
+                    HttpContext.Session.SetString("SessionUserName", u.Username);
+                    TempData["Mensagem"] = string.Format($"Bem vindo {u.Username} =)");
                     return RedirectToAction("Index", "Personagens");
                 }
                 else
