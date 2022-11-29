@@ -12,9 +12,9 @@ namespace RpgMvc.Controllers
 {
     public class UsuariosController : Controller
     {
-        public string uriBase = "http://localhost:5270/Usuarios/";
+        //public string uriBase = "http://localhost:5270/Usuarios/";
         //public string uriBase = "http://DanMarzo.somee.com/RpgApi/Usuarios/";
-        //public string uriBase = "https://bsite.net/luizfernando987/Usuarios/";
+        public string uriBase = "https://bsite.net/luizfernando987/Usuarios/";
 
         [HttpGet]
         public ActionResult Index()
@@ -107,6 +107,30 @@ namespace RpgMvc.Controllers
                 TempData["MensagemErro"] = ex.Message;
                 return RedirectToAction("Index");
             }
+        }
+        [HttpPost]
+        public async Task<ActionResult> AlteraEmail(UsuarioViewModel u)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string token = HttpContext.Session.GetString("SessionTokenUsuario");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                string uriComplementar = "AtualizarEmail";
+                var content = new StringContent(JsonConvert.SerializeObject(u));
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
+                string serialized = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == HttpStatusCode.OK)
+                    TempData["Mensagem"] = "E-mail alterado com sucesso! =)";
+                throw new Exception(serialized);
+            }
+            catch(Exception ex)
+            {
+                TempData["MensagemErro"] = ex.Message;
+            }
+            return RedirectToAction("IndexInformacoes");
+
         }
     }
 }

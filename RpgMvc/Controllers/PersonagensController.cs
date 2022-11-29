@@ -8,9 +8,9 @@ namespace RpgMvc.Controllers
 {
     public class PersonagensController : Controller
     {
-        public string uriBase = "http://localhost:5270/Personagens/";
+        //public string uriBase = "http://localhost:5270/Personagens/";
         //public string uriBase = "http://DanMarzo.somee.com/RpgApi/Personagens/";
-        //public string uriBase = "https://bsite.net/luizfernando987/Personagens/";
+        public string uriBase = "https://bsite.net/luizfernando987/Personagens/";
 
         [HttpGet]
         public async Task<ActionResult> IndexAsync()
