@@ -84,5 +84,29 @@ namespace RpgMvc.Controllers
                 return IndexLogin();
             }
         }
+        [HttpGet]
+        public async Task<ActionResult> IndexInformacoesAsync()
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                //novo: Recuperação de informação de sessao
+                string login                 = HttpContext.Session.GetString("SessionUserName");
+                string uriComplementar       = $"GetByLogin/{login}";
+                HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementar);
+                string serialized = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    UsuarioViewModel usuario = await Task.Run(() => JsonConvert.DeserializeObject<UsuarioViewModel>(serialized));
+                    return View(usuario);
+                }
+                else
+                    throw new Exception(serialized);
+            }catch(Exception ex)
+            {
+                TempData["MensagemErro"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
