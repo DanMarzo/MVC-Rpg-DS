@@ -34,7 +34,12 @@
     @Html.ActionLink("Voltar ao Início", "Index", "Personagens");
 </p>
 <br />
-    <button onclick="AlterarEmail();" type="button" class="btn btn-primary">Adicionar</button>
+    <button onclick="AlterarEmail();" type="button" class="btn btn-primary">
+        Adicionar
+    </button>
+    <button onclick="AbrirModalAlterarSenha();" type="button" class="btn btn-primary">
+        Alterar Senha
+    </button>
 <!--Conteúdo do modal popup-->
 <div class="modal fade bd-example-modal-lg" id="modalInterno" tabindex="-1" role="dialog"
 aria-labelledby="modalInternoLabel" aria-hidden="true">
@@ -44,7 +49,7 @@ aria-labelledby="modalInternoLabel" aria-hidden="true">
                     <h5 class="modal-title" id="modalInternoLabel"> Alteração de E-mail</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
-                    <button onclick="AbrirModalAlterarSenha();" type="button" class="btn btn-primary">Alterar Senha</button>
+                    
             </div>
 @using (Html.BeginForm("AlterarEmail", "Usuarios", FormMethod.Post))
 {
@@ -71,6 +76,31 @@ aria-labelledby="modalInternoLabel" aria-hidden="true">
         </div>
     </div>
 </div>
+@*Inicio div para Troca de senha*@
+<!-- Modal externo -->
+<div class="modal" id="modalExterno" tabindex="-1" role="dialog" aria-labelledby="modalExternoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalExternoLabel">
+                    @TempData["TituloModalExterno"]
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-
+                        label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-
+                        dismiss="modal">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Fim div de troca de senha*@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script type="text/javascript">

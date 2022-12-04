@@ -139,7 +139,7 @@ namespace RpgMvc.Controllers
             return RedirectToAction("IndexInformacoes");
 
         }
-        /*
+        
         [HttpGet]
         public async Task<ActionResult> ObterDadosAlteracaoSenha()
         {
@@ -157,11 +157,13 @@ namespace RpgMvc.Controllers
                     viewModel = await Task.Run(() => JsonConvert.DeserializeObject<UsuarioViewModel>(serialized));
                     return PartialView("_AlteracaoSenha", viewModel);
                 }
+                throw new Exception(serialized);
             }
             catch (Exception ex)
             {
-
+                TempData["MensagemErro"] = ex.Message;
+                return RedirectToAction("_AlteracaoSenha", viewModel);
             }
-        }*/
+        }
     }
 }
