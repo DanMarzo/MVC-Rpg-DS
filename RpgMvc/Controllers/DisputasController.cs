@@ -42,6 +42,34 @@ namespace RpgMvc.Controllers
                 return RedirectToAction("Index");
             }
         }
-        
+        // [HttpPost]
+        // public async Task<ActionResult> IndexAsync(DisputaViewModel disputa)
+        // {
+        //     try
+        //     {
+        //         HttpClient httpClient = new HttpClient();
+        //         string uriComplementar = "Arma";
+
+        //         var content = new StringContent(JsonConvert.SerializeObject(disputa));
+        //         content.Headers.ContentType = MediaTypeHeaderValue("application/json");
+        //         HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
+        //         string serialized = await response.Content.ReadAsStringAsync();
+
+        //         if (response.StatusCode == HttpStatusCode.OK)
+        //         {
+        //             disputa = await Task.Run(() => JsonConvert.DeserializeObject<> )
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         TempData["MensagemErro"] = ex.Message;
+        //         return RedirectToAction("Index");
+        //     }
+        // }
+
+        // private MediaTypeHeaderValue? MediaTypeHeaderValue(string v)
+        // {
+        //     throw new NotImplementedException();
+        // }
     }
 }

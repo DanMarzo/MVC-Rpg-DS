@@ -109,18 +109,25 @@ namespace RpgMvc.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult> AlteraEmail(UsuarioViewModel u)
+        public async Task<ActionResult> AlteraEmail (UsuarioViewModel u)
         {
             try
             {
                 HttpClient httpClient = new HttpClient();
                 string token = HttpContext.Session.GetString("SessionTokenUsuario");
+                
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                
                 string uriComplementar = "AtualizarEmail";
+
                 var content = new StringContent(JsonConvert.SerializeObject(u));
+
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                
                 HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
+                
                 string serialized = await response.Content.ReadAsStringAsync();
+
                 if (response.StatusCode == HttpStatusCode.OK)
                     TempData["Mensagem"] = "E-mail alterado com sucesso! =)";
                 throw new Exception(serialized);
@@ -132,8 +139,9 @@ namespace RpgMvc.Controllers
             return RedirectToAction("IndexInformacoes");
 
         }
+        /*
         [HttpGet]
-        public async ActionResult AbrirAlteracaoSenha()
+        public async Task<ActionResult> ObterDadosAlteracaoSenha()
         {
             UsuarioViewModel viewModel = new UsuarioViewModel();
             try
@@ -143,15 +151,17 @@ namespace RpgMvc.Controllers
                 string uriComplementar = $"GetByLogin/{login}";
                 HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementar);
                 string serialized = await response.Content.ReadAsStringAsync();
-                if(response.StatusCode == HttpStatusCode.OK)
+                TempData["TituloModalExterno"] = "Alteração de Senha";
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    UsuarioViewModel u = await Task.Run(() => JsonConvert.DeserializeObject<UsuarioViewModel>(serialized));
+                    viewModel = await Task.Run(() => JsonConvert.DeserializeObject<UsuarioViewModel>(serialized));
+                    return PartialView("_AlteracaoSenha", viewModel);
                 }
             }
             catch (Exception ex)
             {
 
             }
-        }
+        }*/
     }
 }

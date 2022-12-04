@@ -13,5 +13,6 @@ namespace RpgMvc.Models
         public byte[]    Foto           { get; set; }
         public DateTime? DataAcesso     { get; set; }
         public string    Email          { get; set; }
+        public string    Perfil         { get; set; }
     }
 }
