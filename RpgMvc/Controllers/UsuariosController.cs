@@ -91,8 +91,8 @@ namespace RpgMvc.Controllers
             {
                 HttpClient httpClient = new HttpClient();
                 //novo: Recuperação de informação de sessao
-                string login                 = HttpContext.Session.GetString("SessionUserName");
-                string uriComplementar       = $"GetByLogin/{login}";
+                string login = HttpContext.Session.GetString("SessionUserName");
+                string uriComplementar = $"GetByLogin/{login}";
                 HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementar);
                 string serialized = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -163,6 +163,37 @@ namespace RpgMvc.Controllers
             {
                 TempData["MensagemErro"] = ex.Message;
                 return RedirectToAction("_AlteracaoSenha", viewModel);
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> AlterarSenha(UsuarioViewModel u)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string token = HttpContext.Session.GetString("SessionTokenUsuario");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                string uriComplementar = "AlterarSenha";
+                u.Username = HttpContext.Session.GetString("SessionUsername");
+                var content = new StringContent(JsonConvert.SerializeObject(u));
+
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                HttpResponseMessage response = await httpClient.PutAsync(uriBase + uriComplementar, content);
+                string serialized = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    string mensagem = "Senha Alterada com sucesso.";
+                    TempData["Mensagem"] = mensagem;
+                    return Json(mensagem);
+                }
+                throw new Exception(serialized);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
             }
         }
     }
