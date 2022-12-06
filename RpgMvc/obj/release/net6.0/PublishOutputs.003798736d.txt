@@ -1,0 +1,11 @@
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\RpgMvc.exe
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\appsettings.Development.json
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\appsettings.json
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\RpgMvc.dll
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\RpgMvc.deps.json
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\RpgMvc.runtimeconfig.json
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\RpgMvc.pdb
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\Newtonsoft.Json.dll
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\Newtonsoft.Json.Bson.dll
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\Newtonsoft.Json.Schema.dll
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\Publish\System.Security.Permissions.dll

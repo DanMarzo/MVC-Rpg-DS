@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RpgMvc.Models;
-using System;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
+using System.Net.Mime;
+
 
 namespace RpgMvc.Controllers
 {
@@ -65,6 +63,7 @@ namespace RpgMvc.Controllers
 
                 var content = new StringContent(JsonConvert.SerializeObject(u));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                
                 HttpResponseMessage response = await cliente.PostAsync(uriBase + uriComplementar, content);
                 string serialized = await response.Content.ReadAsStringAsync();
 
@@ -162,7 +161,7 @@ namespace RpgMvc.Controllers
             catch (Exception ex)
             {
                 TempData["MensagemErro"] = ex.Message;
-                return RedirectToAction("_AlteracaoSenha", viewModel);
+                return RedirectToAction("IndexInformacoes");
             }
         }
         [HttpPost]
@@ -174,7 +173,8 @@ namespace RpgMvc.Controllers
                 string token = HttpContext.Session.GetString("SessionTokenUsuario");
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                string uriComplementar = "AlterarSenha";
+                string uriComplementar = "AlteracaoSenha";
+                //string uriComplementar = "AlterarSenha";
                 u.Username = HttpContext.Session.GetString("SessionUsername");
                 var content = new StringContent(JsonConvert.SerializeObject(u));
 
@@ -194,6 +194,35 @@ namespace RpgMvc.Controllers
             catch (Exception ex)
             {
                 return Json(ex.Message);
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> BaixarFoto()
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                string login = HttpContext.Session.GetString("SessionUsername");
+                string uriComplementar = $"GetByLogin/{login}";
+                HttpResponseMessage response = await httpClient.GetAsync(uriBase + uriComplementar);
+                string serialized = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    UsuarioViewModel viewModel = await
+                        Task.Run(() => JsonConvert.DeserializeObject<UsuarioViewModel>(serialized));
+                    //string contentType = "application/image";
+                    string contentType = MediaTypeNames.Application.Octet;
+                    byte[] fileBytes = viewModel.Foto;
+                    string fileName = $"Foto{viewModel.Username}_{DateTime.Now:ddMMyyyyHHmmss}.png"; // + extensao;
+                    return File(fileBytes, contentType, fileName);
+                }
+                else
+                    throw new System.Exception(serialized);
+            }
+            catch (System.Exception ex)
+            {
+                TempData["MensagemErro"] = ex.Message;
+                return RedirectToAction("IndexInformacoes");
             }
         }
     }

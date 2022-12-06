@@ -19,13 +19,8 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <hr />@*
-        <div class="form-group">
-            @Html.DisplayName("Atacante")
-            <div class="col-md-6">
-                @Html.DropDownListFor(model => model.AtacanteId, new SelectList(@ViewBag.ListaAtacantes, "Id", "Nome"),"---Selecione---", new { @class = "form-control" })
-            </div>
-    *@
+        <hr />
+        <div class="form-group"> 
             @Html.DisplayName("Habilidade")
             <div class="col-md-6">
                 @Html.DropDownListFor(model => model.HabilidadeId, new SelectList(@ViewBag.ListaHabilidades, "Id", "Nome"),"---Selecione---", new { @class = "form-control" })
