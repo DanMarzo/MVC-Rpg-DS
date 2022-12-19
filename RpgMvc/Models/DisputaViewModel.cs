@@ -9,7 +9,7 @@
         public string       Narracao           { get; set; }
         public int          HabilidadeId       { get; set; }
         public List<int>    ListaIdPersonagens { get; set; } = new List<int>();
-        public List<string> Resultados         { get; set; }
+        public List<string> Resultados         { get; set; }=new List<string>();
 
     }
 }

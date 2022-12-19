@@ -11,21 +11,24 @@ namespace RpgMvc.Controllers
     public class UsuariosController : Controller
     {
         //public string uriBase = "http://localhost:5270/Usuarios/";
-        //public string uriBase = "http://DanMarzo.somee.com/RpgApi/Usuarios/";
-        public string uriBase = "https://bsite.net/luizfernando987/Usuarios/";
+        public string uriBase = "http://DanMarzo.somee.com/RpgApi/Usuarios/";
+        //public string uriBase = "https://bsite.net/luizfernando987/Usuarios/";
 
         [HttpGet]
         public ActionResult Index()
         {
             return View("CadastroUsuario");
         }
+
         [HttpPost]
         public async Task<ActionResult> RegistrarAsync(UsuarioViewModel u)
         {
             try
             {
                 HttpClient httpClient = new HttpClient();
+                
                 string uriComplementar = "Registrar";
+
                 var content = new StringContent(JsonConvert.SerializeObject(u));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
@@ -47,6 +50,7 @@ namespace RpgMvc.Controllers
                 return RedirectToAction("Index");
             }
         }
+
         [HttpGet]
         public ActionResult IndexLogin()
         {
@@ -83,6 +87,7 @@ namespace RpgMvc.Controllers
                 return IndexLogin();
             }
         }
+
         [HttpGet]
         public async Task<ActionResult> IndexInformacoesAsync()
         {
@@ -107,6 +112,7 @@ namespace RpgMvc.Controllers
                 return RedirectToAction("Index");
             }
         }
+
         [HttpPost]
         public async Task<ActionResult> AlteraEmail (UsuarioViewModel u)
         {
@@ -164,6 +170,7 @@ namespace RpgMvc.Controllers
                 return RedirectToAction("IndexInformacoes");
             }
         }
+
         [HttpPost]
         public async Task<ActionResult> AlterarSenha(UsuarioViewModel u)
         {
@@ -196,6 +203,7 @@ namespace RpgMvc.Controllers
                 return Json(ex.Message);
             }
         }
+
         [HttpGet]
         public async Task<ActionResult> BaixarFoto()
         {
@@ -217,9 +225,9 @@ namespace RpgMvc.Controllers
                     return File(fileBytes, contentType, fileName);
                 }
                 else
-                    throw new System.Exception(serialized);
+                    throw new Exception(serialized);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 TempData["MensagemErro"] = ex.Message;
                 return RedirectToAction("IndexInformacoes");

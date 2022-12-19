@@ -101,3 +101,8 @@ D:\DanMarzoGil\MVC-Rpg-DS\RpgMvc\obj\Debug\net6.0\refint\RpgMvc.dll
 D:\DanMarzoGil\MVC-Rpg-DS\RpgMvc\obj\Debug\net6.0\RpgMvc.pdb
 D:\DanMarzoGil\MVC-Rpg-DS\RpgMvc\obj\Debug\net6.0\RpgMvc.genruntimeconfig.cache
 D:\DanMarzoGil\MVC-Rpg-DS\RpgMvc\obj\Debug\net6.0\ref\RpgMvc.dll
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\bin\Debug\net6.0\Publish\web.config
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\bin\Debug\net6.0\Publish\appsettings.Development.json
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\bin\Debug\net6.0\Publish\appsettings.json
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\bin\Debug\net6.0\Publish\RpgMvc.deps.json
+D:\ETEC\etec2\DS-I\RPGapi\Front-End\RpgMvc\RpgMvc\bin\Debug\net6.0\Publish\RpgMvc.runtimeconfig.json
